@@ -1,8 +1,8 @@
 @import "tailwindcss";
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --background: #050510;
+  --foreground: #ffffff;
 }
 
 @theme inline {
@@ -12,15 +12,119 @@
   --font-mono: var(--font-geist-mono);
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
-}
-
 body {
   background: var(--background);
   color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: var(--font-geist-sans), Arial, Helvetica, sans-serif;
+}
+
+/* Liquid orb animations */
+.orb {
+  position: absolute;
+  filter: blur(90px);
+  opacity: 0.55;
+  will-change: transform, border-radius;
+}
+
+.orb-purple {
+  width: 480px;
+  height: 480px;
+  background: radial-gradient(circle at 40% 40%, #7c3aed, #4f46e5 60%, #312e81);
+  top: -120px;
+  left: -120px;
+  animation: float1 9s ease-in-out infinite;
+}
+
+.orb-blue {
+  width: 400px;
+  height: 400px;
+  background: radial-gradient(circle at 60% 60%, #2563eb, #0284c7 50%, #06b6d4);
+  bottom: -100px;
+  right: -100px;
+  animation: float2 11s ease-in-out infinite;
+}
+
+.orb-pink {
+  width: 320px;
+  height: 320px;
+  background: radial-gradient(circle at 50% 50%, #ec4899, #f43f5e 55%, #be123c);
+  top: 55%;
+  right: 8%;
+  animation: float3 8s ease-in-out infinite;
+}
+
+.orb-teal {
+  width: 280px;
+  height: 280px;
+  background: radial-gradient(circle at 50% 50%, #14b8a6, #0ea5e9 55%, #0891b2);
+  bottom: 18%;
+  left: 8%;
+  animation: float4 10s ease-in-out infinite;
+}
+
+@keyframes float1 {
+  0%   { transform: translate(0px, 0px) scale(1);    border-radius: 50%; }
+  25%  { transform: translate(45px, -70px) scale(1.12); border-radius: 62% 38% 68% 32% / 45% 58% 42% 55%; }
+  50%  { transform: translate(20px, -40px) scale(1.05); border-radius: 40% 60% 35% 65% / 55% 35% 65% 45%; }
+  75%  { transform: translate(-30px, 40px) scale(0.92); border-radius: 55% 45% 60% 40% / 40% 62% 38% 60%; }
+  100% { transform: translate(0px, 0px) scale(1);    border-radius: 50%; }
+}
+
+@keyframes float2 {
+  0%   { transform: translate(0px, 0px) scale(1);    border-radius: 50%; }
+  25%  { transform: translate(-50px, 35px) scale(0.9);  border-radius: 38% 62% 42% 58% / 60% 42% 58% 40%; }
+  50%  { transform: translate(-25px, 60px) scale(1.08); border-radius: 60% 40% 55% 45% / 38% 58% 42% 62%; }
+  75%  { transform: translate(35px, -25px) scale(1.12); border-radius: 45% 55% 38% 62% / 55% 38% 62% 45%; }
+  100% { transform: translate(0px, 0px) scale(1);    border-radius: 50%; }
+}
+
+@keyframes float3 {
+  0%   { transform: translate(0px, 0px) scale(1);    border-radius: 50%; }
+  33%  { transform: translate(-35px, -45px) scale(1.1); border-radius: 55% 45% 65% 35% / 42% 60% 40% 58%; }
+  66%  { transform: translate(40px, 30px) scale(0.88);  border-radius: 38% 62% 45% 55% / 60% 38% 62% 38%; }
+  100% { transform: translate(0px, 0px) scale(1);    border-radius: 50%; }
+}
+
+@keyframes float4 {
+  0%   { transform: translate(0px, 0px) scale(1);    border-radius: 50%; }
+  33%  { transform: translate(30px, -50px) scale(1.08); border-radius: 60% 40% 55% 45% / 45% 60% 40% 55%; }
+  66%  { transform: translate(-40px, 25px) scale(0.92); border-radius: 42% 58% 38% 62% / 58% 42% 62% 38%; }
+  100% { transform: translate(0px, 0px) scale(1);    border-radius: 50%; }
+}
+
+/* Gradient text */
+.gradient-text {
+  background: linear-gradient(135deg, #a78bfa 0%, #60a5fa 50%, #34d399 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* Glassmorphism card */
+.glass-card {
+  background: rgba(255, 255, 255, 0.04);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  box-shadow: 0 25px 50px rgba(0, 0, 0, 0.4), inset 0 1px 0 rgba(255, 255, 255, 0.1);
+}
+
+/* Subtle pulse on email link */
+@keyframes pulse-glow {
+  0%, 100% { box-shadow: 0 0 0 0 rgba(139, 92, 246, 0); }
+  50%       { box-shadow: 0 0 16px 4px rgba(139, 92, 246, 0.25); }
+}
+
+.email-link {
+  animation: pulse-glow 3s ease-in-out infinite;
+}
+
+/* Divider line animation */
+@keyframes expand {
+  from { width: 0; opacity: 0; }
+  to   { width: 60px; opacity: 1; }
+}
+
+.divider-line {
+  animation: expand 1.2s ease-out 0.4s both;
 }
